@@ -1,0 +1,23 @@
+{
+  "name": "diario-producao-blog",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "nodemon server/index.js",
+    "dev:web": "cd web && npm run dev",
+    "build": "cd web && npm install && npm run build",
+    "start": "node server/index.js",
+    "postinstall": "npx prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1",
+    "prisma": "^5.8.0"
+  }
+}
