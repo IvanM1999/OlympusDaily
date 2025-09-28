@@ -48,7 +48,10 @@ const __dirname = path.dirname(__filename);
 const distPath = path.join(__dirname, "../web/dist");
 
 app.use(express.static(distPath));
-app.get("*", (_, res) => res.sendFile(path.join(distPath, "index.html")));
+// Fallback SPA: só retorna index.html se não for rota de API
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
